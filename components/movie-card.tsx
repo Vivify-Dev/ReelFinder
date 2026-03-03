@@ -56,7 +56,7 @@ export function MovieCard({ movie }: Props) {
             event.stopPropagation();
             toggleFavorite(movie);
           }}
-          className="absolute right-3 top-3 z-10 rounded-full bg-slate-950/70 p-2 text-white opacity-0 shadow-md backdrop-blur transition hover:scale-105 group-hover:opacity-100"
+          className="absolute right-3 top-3 z-20 rounded-full bg-slate-950/75 p-2 text-white opacity-100 shadow-md backdrop-blur transition md:opacity-0 md:pointer-events-none md:group-hover:pointer-events-auto md:group-hover:opacity-100 md:focus-visible:pointer-events-auto md:focus-visible:opacity-100 md:hover:scale-105"
         >
           <HeartIcon
             className={`h-4 w-4 ${favorite ? "text-rose-400" : "text-white"}`}

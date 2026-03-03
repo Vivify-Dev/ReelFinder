@@ -20,6 +20,7 @@ type FavoritesContextValue = {
 const FavoritesContext = createContext<FavoritesContextValue | null>(null);
 
 const STORAGE_KEY = "reelfinder:favorites";
+const isDev = process.env.NODE_ENV !== "production";
 
 const readFavorites = (): MovieSummary[] => {
   if (typeof window === "undefined") return [];
@@ -27,7 +28,9 @@ const readFavorites = (): MovieSummary[] => {
     const stored = localStorage.getItem(STORAGE_KEY);
     return stored ? (JSON.parse(stored) as MovieSummary[]) : [];
   } catch (error) {
-    console.warn("Failed to read favorites from storage", error);
+    if (isDev) {
+      console.warn("Failed to read favorites from storage", error);
+    }
     return [];
   }
 };

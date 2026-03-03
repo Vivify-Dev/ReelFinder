@@ -7,6 +7,7 @@ import {
 export const revalidate = 86400;
 
 export async function GET() {
+  const isDev = process.env.NODE_ENV !== "production";
   try {
     const ids = await getNowPlayingIds();
     return NextResponse.json({
@@ -16,7 +17,9 @@ export async function GET() {
       cache_seconds: NOW_PLAYING_REVALIDATE_SECONDS,
     });
   } catch (error) {
-    console.error("Now playing ids API error:", error);
+    if (isDev) {
+      console.error("Now playing ids API error:", error);
+    }
     return NextResponse.json(
       {
         ids: [],

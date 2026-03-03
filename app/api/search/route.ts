@@ -6,6 +6,7 @@ export const revalidate = 60;
 
 const CAP_PAGES = 10;
 const TMDB_MAX_PAGE = 500;
+const isDev = process.env.NODE_ENV !== "production";
 const SEARCH_TYPES: SearchType[] = [
   "titles",
   "people",
@@ -613,13 +614,13 @@ export async function GET(request: NextRequest) {
         titleFlowError = error;
       }
 
-      if (keywordFlowError || keywordResolutionError) {
+      if (isDev && (keywordFlowError || keywordResolutionError)) {
         console.warn("Keyword discover flow failed", {
           keywordFlowError,
           keywordResolutionError,
         });
       }
-      if (titleFlowError) {
+      if (isDev && titleFlowError) {
         console.warn("Keyword title-match flow failed", titleFlowError);
       }
 
@@ -781,7 +782,9 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(payload);
   } catch (error) {
-    console.error("Search API error:", error);
+    if (isDev) {
+      console.error("Search API error:", error);
+    }
     return NextResponse.json(
       buildErrorPayload(
         page,
