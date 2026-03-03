@@ -15,12 +15,9 @@ export default function FavoritesPage() {
       <section className="rounded-3xl border border-white/10 bg-white/5 px-6 py-8 shadow-2xl shadow-cyan-500/10 sm:px-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-cyan-200">
-              Your list
-            </p>
             <h1 className="text-3xl font-semibold text-white">Favorites</h1>
             <p className="text-sm text-muted-foreground">
-              Saved locally on this device. Remove or revisit anytime.
+              Movies you&apos;ve saved for later.
             </p>
           </div>
           <Link
@@ -55,7 +52,7 @@ export default function FavoritesPage() {
         <div className="rounded-3xl border border-white/10 bg-white/5 px-6 py-10 text-center text-muted-foreground">
           <p className="text-lg font-medium text-white">No favorites yet</p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Start saving movies you love. Your list will live in this browser.
+            Start saving movies you love.
           </p>
           <Link
             href="/"

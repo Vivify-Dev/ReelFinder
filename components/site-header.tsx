@@ -10,7 +10,7 @@ export function SiteHeader() {
   const isDiscover = pathname === "/" || pathname === "/discover";
 
   return (
-    <header className="sticky top-0 z-30 border-b border-white/10 bg-slate-950/80 backdrop-blur">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-slate-950/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:flex-nowrap sm:py-4">
         <Link href="/" className="group inline-flex min-w-0 items-center gap-2">
           <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 to-indigo-500 text-slate-950 shadow-lg shadow-cyan-500/30 sm:h-10 sm:w-10">
