@@ -1,13 +1,14 @@
 # ReelFinder
 
-ReelFinder is a movie discovery app built with Next.js App Router and TMDB data. It supports search, detail browsing, and local favorites in a production-style frontend architecture.
+ReelFinder is a Next.js movie discovery app powered by TMDB. It supports search across titles and people, genre/keyword exploration, detailed movie/person pages, and local favorites.
 
 ## Features
-- Search titles, people, genres, and keywords with debounced input.
-- Browse trending results and quick genre shortcuts.
-- View movie and person detail pages with cast and credits.
-- Save and remove favorites with browser-local persistence.
-- Use server-side TMDB proxy routes with retry and error handling.
+- Search by titles, people, genres, and keywords.
+- Browse trending/popular content with infinite scrolling.
+- View movie details (overview, cast, runtime, status, release data).
+- View person profiles and recent movie credits.
+- Save favorites in browser local storage.
+- Use server-side API routes as a TMDB proxy layer with typed responses.
 
 ## Tech Stack
 - Next.js 16 (App Router)
@@ -16,23 +17,52 @@ ReelFinder is a movie discovery app built with Next.js App Router and TMDB data.
 - Tailwind CSS 4
 - ESLint
 
-## Local Development
-```powershell
-npm install
-Copy-Item .env.example .env.local
-npm run dev
-```
+## Setup
+1. Install dependencies:
+   ```powershell
+   npm ci
+   ```
+2. Create local environment file:
+   ```powershell
+   Copy-Item .env.example .env.local
+   ```
+3. Set required environment variables in `.env.local` (see below).
+4. Start development server:
+   ```powershell
+   npm run dev
+   ```
 
-Set `TMDB_API_KEY` in `.env.local` before starting the app.
+## Environment Variables
+Use `.env.local` for local development.
 
-## Build
-```powershell
-npm run build
-npm run start
-```
+- `TMDB_API_KEY` (required): TMDB API key used by server routes.
+- `NEXT_PUBLIC_BASE_URL` (optional): absolute app URL used when client/server code needs explicit origin.
+- `BASE_URL` (optional): server-side fallback origin if `NEXT_PUBLIC_BASE_URL` is not set.
 
-## Deployment Overview
-Deploy to Vercel for native Next.js hosting. Configure `TMDB_API_KEY` as a required environment variable, and set `NEXT_PUBLIC_BASE_URL` or `BASE_URL` when your deployment needs explicit absolute URL resolution.
+Reference file: [`.env.example`](./.env.example)
+
+## Build And Run
+- Lint:
+  ```powershell
+  npm run lint
+  ```
+- Production build:
+  ```powershell
+  npm run build
+  ```
+- Start production server:
+  ```powershell
+  npm run start
+  ```
+
+## Known Limitations
+- A valid `TMDB_API_KEY` is required for live API data.
+- Search pagination is intentionally capped (`CAP_PAGES = 10`) to control API usage.
+- Favorites are stored per browser via `localStorage` (not synced across devices).
+- No authentication/user accounts are included.
+
+## Deployment
+Deploy on Vercel (recommended for Next.js). Configure `TMDB_API_KEY` in the deployment environment, and optionally set `NEXT_PUBLIC_BASE_URL` or `BASE_URL` for absolute URL resolution.
 
 ## Attribution
 Camcorder icon: https://www.flaticon.com/free-icons/camcorder

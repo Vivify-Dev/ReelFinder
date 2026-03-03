@@ -81,7 +81,9 @@ export async function GET() {
       cache_hours: 24,
     });
   } catch (error) {
-    console.error("Genres API error:", error);
+    if (isDev) {
+      console.error("Genres API error:", error);
+    }
     return NextResponse.json(
       {
         error: "TMDB_UNAVAILABLE",

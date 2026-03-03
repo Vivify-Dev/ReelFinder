@@ -4,9 +4,12 @@ build/
 out/
 .next/
 coverage/
-.env
-.env.*
+
+.env*
 !.env.example
+
 *.log
+tsconfig.tsbuildinfo
+
 .DS_Store
 Thumbs.db

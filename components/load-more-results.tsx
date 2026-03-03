@@ -207,7 +207,9 @@ export function LoadMoreResults({
           setNowPlayingIds(ids);
         }
       } catch (nowPlayingError) {
-        console.error("Now playing ids request failed", nowPlayingError);
+        if (isDev) {
+          console.error("Now playing ids request failed", nowPlayingError);
+        }
       }
     };
 
@@ -305,7 +307,9 @@ export function LoadMoreResults({
           return;
         }
 
-        console.error("Search request failed", fetchError);
+        if (isDev) {
+          console.error("Search request failed", fetchError);
+        }
         setError("We hit a snag loading results. Please try again.");
       } finally {
         if (requestCounter.current === requestId) {
