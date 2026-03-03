@@ -189,7 +189,7 @@ function SearchBar({
                   id="search-type-menu"
                   role="menu"
                   aria-label="Search Type"
-                  className="absolute right-0 top-full z-[100] mt-2 w-[min(24rem,calc(100vw-3rem))] rounded-2xl border border-white/15 bg-slate-950/95 p-0 text-slate-100 shadow-2xl shadow-cyan-500/20 lg:w-[28rem]"
+                  className="absolute right-0 top-full z-20 mt-2 w-[min(24rem,calc(100vw-3rem))] rounded-2xl border border-white/15 bg-slate-950/95 p-0 text-slate-100 shadow-2xl shadow-cyan-500/20 lg:w-[28rem]"
                 >
                   <div className="max-h-[70dvh] overflow-y-auto">
                     <div className="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-slate-950/95 px-4 py-3">
@@ -463,7 +463,7 @@ function HomeContent() {
 
   return (
     <div className="space-y-10">
-      <section className="relative z-40 rounded-3xl border border-white/10 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 px-4 py-10 shadow-2xl shadow-cyan-500/10 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
+      <section className="relative z-10 rounded-3xl border border-white/10 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 px-4 py-10 shadow-2xl shadow-cyan-500/10 sm:px-8 sm:py-14 lg:px-10 lg:py-16">
         <div className="mx-auto max-w-3xl space-y-5 text-center sm:space-y-6">
           <h1 className="text-center text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
             ReelFinder
