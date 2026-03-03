@@ -6,6 +6,7 @@ out/
 coverage/
 
 .env*
+.env
 !.env.example
 
 *.log
@@ -13,3 +14,4 @@ tsconfig.tsbuildinfo
 
 .DS_Store
 Thumbs.db
+
