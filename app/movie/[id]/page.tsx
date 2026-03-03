@@ -5,35 +5,9 @@ import { FavoriteToggle } from "@/components/favorite-toggle";
 import { RetryRefreshButton } from "@/components/retry-refresh-button";
 import { ClockIcon, StarIcon } from "@/components/ui/icons";
 import { formatRating, formatRuntime, formatYear } from "@/lib/formatters";
+import { toInternalApiUrl } from "@/lib/internal-api-url";
 import { getBackdropUrl, getPosterUrl, tmdbProfileUrl } from "@/lib/tmdb-images";
 import { MovieDetails } from "@/types/movies";
-
-const getBaseUrl = () => {
-  const raw =
-    process.env.NEXT_PUBLIC_BASE_URL ??
-    process.env.BASE_URL ??
-    (process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : undefined);
-  if (!raw) {
-    throw new Error("Base URL not configured for server fetch.");
-  }
-
-  let url: URL;
-  try {
-    url = new URL(raw.trim());
-  } catch {
-    throw new Error("Base URL must be an absolute URL.");
-  }
-
-  url.hash = "";
-  url.search = "";
-  if (!url.pathname.endsWith("/")) {
-    url.pathname += "/";
-  }
-
-  return url.toString();
-};
 
 type MovieFetchResult =
   | { status: "ok"; movie: MovieDetails }
@@ -42,9 +16,8 @@ type MovieFetchResult =
   | { status: "unavailable" };
 
 async function getMovie(id: string): Promise<MovieFetchResult> {
-  const base = getBaseUrl();
-  const apiUrl = new URL(`api/movie/${id}`, base);
-  const res = await fetch(apiUrl.toString(), {
+  const apiUrl = await toInternalApiUrl(`/api/movie/${id}`);
+  const res = await fetch(apiUrl, {
     next: { revalidate: 3600 },
   });
 

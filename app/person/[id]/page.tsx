@@ -3,35 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MovieCard } from "@/components/movie-card";
 import { RetryRefreshButton } from "@/components/retry-refresh-button";
+import { toInternalApiUrl } from "@/lib/internal-api-url";
 import { tmdbProfileUrl } from "@/lib/tmdb-images";
 import { PersonDetails } from "@/types/movies";
-
-const getBaseUrl = () => {
-  const raw =
-    process.env.NEXT_PUBLIC_BASE_URL ??
-    process.env.BASE_URL ??
-    (process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : undefined);
-  if (!raw) {
-    throw new Error("Base URL not configured for server fetch.");
-  }
-
-  let url: URL;
-  try {
-    url = new URL(raw.trim());
-  } catch {
-    throw new Error("Base URL must be an absolute URL.");
-  }
-
-  url.hash = "";
-  url.search = "";
-  if (!url.pathname.endsWith("/")) {
-    url.pathname += "/";
-  }
-
-  return url.toString();
-};
 
 type PersonFetchResult =
   | { status: "ok"; person: PersonDetails }
@@ -40,9 +14,8 @@ type PersonFetchResult =
   | { status: "unavailable" };
 
 async function getPerson(id: string): Promise<PersonFetchResult> {
-  const base = getBaseUrl();
-  const apiUrl = new URL(`api/person/${id}`, base);
-  const res = await fetch(apiUrl.toString(), {
+  const apiUrl = await toInternalApiUrl(`/api/person/${id}`);
+  const res = await fetch(apiUrl, {
     next: { revalidate: 3600 },
   });
 
