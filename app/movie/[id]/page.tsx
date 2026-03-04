@@ -68,7 +68,7 @@ export default async function MoviePage(props: MoviePageProps) {
 
   if (movieResult.status === "unavailable") {
     return (
-      <div className="mx-auto max-w-3xl space-y-6 rounded-3xl border border-white/10 bg-white/5 px-6 py-10 text-center text-muted-foreground">
+      <div className="mx-auto w-full max-w-3xl overflow-x-hidden space-y-6 rounded-3xl border border-white/10 bg-white/5 px-6 py-10 text-center text-muted-foreground">
         <h1 className="text-2xl font-semibold text-white">
           Temporarily unavailable
         </h1>
@@ -106,20 +106,20 @@ export default async function MoviePage(props: MoviePageProps) {
   };
 
   return (
-    <div className="space-y-10">
+    <div className="w-full max-w-full overflow-x-hidden space-y-10">
       {hasBackdrop && backdropUrl ? (
-        <section className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950 shadow-2xl shadow-cyan-500/10">
-          <div className="relative aspect-[16/9] min-h-[240px] sm:min-h-[320px]">
+        <section className="w-full max-w-full overflow-hidden overflow-x-hidden rounded-3xl border border-white/10 bg-slate-950 shadow-2xl shadow-cyan-500/10">
+          <div className="relative w-full max-w-full aspect-[16/9] min-h-[240px] sm:min-h-[320px]">
             <Image
               src={backdropUrl}
               alt={`${movie.title} backdrop`}
               fill
-              sizes="(max-width: 1024px) 100vw, 1200px"
+              sizes="1200px"
               style={{ objectFit: "cover", objectPosition: "center" }}
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/10" />
-            <div className="absolute inset-x-0 bottom-0 w-full min-w-0 p-6 sm:p-8 lg:p-10">
+            <div className="absolute inset-x-0 bottom-0 w-full max-w-full min-w-0 p-6 sm:p-8 lg:p-10">
               <div className="flex flex-wrap items-center gap-3 text-sm text-foreground/80">
                 <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
                   {formatYear(movie.releaseDate)}
@@ -185,17 +185,18 @@ export default async function MoviePage(props: MoviePageProps) {
           </div>
         </section>
       ) : (
-        <section className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 shadow-2xl shadow-cyan-500/10">
-          <div className="grid items-start gap-6 px-6 py-8 sm:px-10 lg:grid-cols-[220px,1fr]">
+        <section className="w-full max-w-full overflow-hidden overflow-x-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 shadow-2xl shadow-cyan-500/10">
+          <div className="grid w-full max-w-full overflow-x-hidden items-start gap-6 px-6 py-8 sm:px-10 lg:grid-cols-[minmax(0,220px),minmax(0,1fr)]">
             <div className="relative mx-auto aspect-[2/3] w-full max-w-[220px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950">
               {posterUrl ? (
                 <Image
                   src={posterUrl}
                   alt={`${movie.title} poster`}
-                  fill
-                  className="object-cover"
+                  width={500}
+                  height={750}
+                  className="block h-auto w-full max-w-full object-contain"
                   priority
-                  sizes="220px"
+                  sizes="(max-width: 1024px) min(220px, 60vw), 220px"
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
@@ -204,7 +205,7 @@ export default async function MoviePage(props: MoviePageProps) {
               )}
             </div>
 
-            <div className="w-full min-w-0 pb-2">
+            <div className="w-full max-w-full min-w-0 pb-2">
               <div className="flex flex-wrap items-center gap-3 text-sm text-foreground/80">
                 <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
                   {formatYear(movie.releaseDate)}

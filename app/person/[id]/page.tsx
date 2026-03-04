@@ -69,7 +69,7 @@ export default async function PersonPage(props: PersonPageProps) {
 
   if (personResult.status === "unavailable") {
     return (
-      <div className="mx-auto max-w-3xl space-y-6 rounded-3xl border border-white/10 bg-white/5 px-6 py-10 text-center text-muted-foreground">
+      <div className="mx-auto w-full max-w-3xl overflow-x-hidden space-y-6 rounded-3xl border border-white/10 bg-white/5 px-6 py-10 text-center text-muted-foreground">
         <h1 className="text-2xl font-semibold text-white">
           Temporarily unavailable
         </h1>
@@ -93,17 +93,18 @@ export default async function PersonPage(props: PersonPageProps) {
   const profileUrl = tmdbProfileUrl(person.profilePath, "w500");
 
   return (
-    <div className="space-y-10">
-      <section className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 shadow-2xl shadow-cyan-500/10">
-        <div className="grid gap-6 px-6 py-8 sm:px-10 md:grid-cols-[240px,1fr]">
+    <div className="w-full max-w-full overflow-x-hidden space-y-10">
+      <section className="w-full max-w-full overflow-hidden overflow-x-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 shadow-2xl shadow-cyan-500/10">
+        <div className="grid w-full max-w-full overflow-x-hidden gap-6 px-6 py-8 sm:px-10 md:grid-cols-[minmax(0,240px),minmax(0,1fr)]">
           <div className="relative mx-auto aspect-[2/3] w-full max-w-[240px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950">
             {profileUrl ? (
               <Image
                 src={profileUrl}
                 alt={person.name}
-                fill
-                className="object-cover object-[50%_20%]"
-                sizes="(max-width: 768px) 240px, 240px"
+                width={500}
+                height={750}
+                className="block h-auto w-full max-w-full object-contain"
+                sizes="(max-width: 1024px) min(240px, 65vw), 240px"
                 priority
               />
             ) : (
@@ -113,7 +114,7 @@ export default async function PersonPage(props: PersonPageProps) {
             )}
           </div>
 
-          <div className="w-full min-w-0 space-y-4">
+          <div className="w-full max-w-full min-w-0 space-y-4">
             <p className="text-sm uppercase tracking-[0.2em] text-cyan-200">
               {person.knownForDepartment || "Person"}
             </p>
