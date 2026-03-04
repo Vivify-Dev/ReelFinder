@@ -113,11 +113,11 @@ export default async function PersonPage(props: PersonPageProps) {
             )}
           </div>
 
-          <div className="space-y-4">
+          <div className="w-full min-w-0 space-y-4">
             <p className="text-sm uppercase tracking-[0.2em] text-cyan-200">
               {person.knownForDepartment || "Person"}
             </p>
-            <h1 className="text-3xl font-semibold text-white sm:text-4xl">
+            <h1 className="text-3xl font-semibold leading-tight whitespace-normal break-words text-white sm:text-4xl">
               {person.name}
             </h1>
             {(person.birthday || person.placeOfBirth) && (

@@ -119,7 +119,7 @@ export default async function MoviePage(props: MoviePageProps) {
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/10" />
-            <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10">
+            <div className="absolute inset-x-0 bottom-0 w-full min-w-0 p-6 sm:p-8 lg:p-10">
               <div className="flex flex-wrap items-center gap-3 text-sm text-foreground/80">
                 <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
                   {formatYear(movie.releaseDate)}
@@ -135,11 +135,11 @@ export default async function MoviePage(props: MoviePageProps) {
                   </span>
                 </div>
               </div>
-              <h1 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+              <h1 className="mt-4 text-3xl font-semibold leading-tight whitespace-normal break-words text-white sm:text-4xl">
                 {movie.title}
               </h1>
               {movie.tagline && (
-                <p className="mt-2 text-lg italic text-foreground/80">
+                <p className="mt-2 text-lg italic leading-snug whitespace-normal break-words text-foreground/80">
                   &ldquo;{movie.tagline}&rdquo;
                 </p>
               )}
@@ -204,7 +204,7 @@ export default async function MoviePage(props: MoviePageProps) {
               )}
             </div>
 
-            <div className="pb-2">
+            <div className="w-full min-w-0 pb-2">
               <div className="flex flex-wrap items-center gap-3 text-sm text-foreground/80">
                 <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
                   {formatYear(movie.releaseDate)}
@@ -221,11 +221,11 @@ export default async function MoviePage(props: MoviePageProps) {
                 </div>
               </div>
 
-              <h1 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+              <h1 className="mt-4 text-3xl font-semibold leading-tight whitespace-normal break-words text-white sm:text-4xl">
                 {movie.title}
               </h1>
               {movie.tagline && (
-                <p className="mt-2 text-lg italic text-muted-foreground">
+                <p className="mt-2 text-lg italic leading-snug whitespace-normal break-words text-muted-foreground">
                   &ldquo;{movie.tagline}&rdquo;
                 </p>
               )}
